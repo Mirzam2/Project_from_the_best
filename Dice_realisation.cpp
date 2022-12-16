@@ -1,6 +1,11 @@
 #include "casino.h"
 using namespace std;
 
+Dices::Dices(): Game(){}; // конструктор по умолчанию
+Dices::Dices(Player *Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers)
+{std::cout << "Number players: " << numofplayers<<"\n";}
+    
+
 int Dices::RollofDice()
 {
 	int dicevalue;
@@ -83,9 +88,9 @@ void Dices::game_process()
 			Players[i].SetBet();
 		}
 		std::cout << "number ff: " << numofplayers << '\n';
-		if (Dices::isequal() == false)
+		if (isequal() == false)
 		{
-			while (Dices::isequal() == false)
+			while (isequal() == false)
 			{
 				cout << "For this game all bets must be equal, enter correct bets" << endl;
 				for (int i = 0; i < numofplayers; i++)

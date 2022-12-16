@@ -18,3 +18,6 @@ bool Game::isbankrupt() {
 	}
 	return false;
 }
+
+Game::Game(Player *Players, Host Croupier, int numofplayers) : Players(Players), Croupier(Croupier), numofplayers(numofplayers){};
+Game::Game(){};

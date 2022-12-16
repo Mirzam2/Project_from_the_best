@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/d/Progi/praktika1
+# Install script for directory: /mnt/d/Progi/Project_from_the_best
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/d/Progi/praktika1/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/d/Progi/Project_from_the_best/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

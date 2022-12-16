@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/d/Progi/praktika1/Casino_realization.cpp" "/mnt/d/Progi/praktika1/CMakeFiles/main.dir/Casino_realization.cpp.o"
-  "/mnt/d/Progi/praktika1/Dice_realisation.cpp" "/mnt/d/Progi/praktika1/CMakeFiles/main.dir/Dice_realisation.cpp.o"
-  "/mnt/d/Progi/praktika1/Game_realization.cpp" "/mnt/d/Progi/praktika1/CMakeFiles/main.dir/Game_realization.cpp.o"
-  "/mnt/d/Progi/praktika1/Hostandplayers.cpp" "/mnt/d/Progi/praktika1/CMakeFiles/main.dir/Hostandplayers.cpp.o"
-  "/mnt/d/Progi/praktika1/Roulete_realisation.cpp" "/mnt/d/Progi/praktika1/CMakeFiles/main.dir/Roulete_realisation.cpp.o"
-  "/mnt/d/Progi/praktika1/main.cpp" "/mnt/d/Progi/praktika1/CMakeFiles/main.dir/main.cpp.o"
+  "/mnt/d/Progi/Project_from_the_best/Casino_realization.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Casino_realization.cpp.o"
+  "/mnt/d/Progi/Project_from_the_best/Dice_realisation.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Dice_realisation.cpp.o"
+  "/mnt/d/Progi/Project_from_the_best/Game_realization.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Game_realization.cpp.o"
+  "/mnt/d/Progi/Project_from_the_best/Hostandplayers.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Hostandplayers.cpp.o"
+  "/mnt/d/Progi/Project_from_the_best/Roulete_realisation.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Roulete_realisation.cpp.o"
+  "/mnt/d/Progi/Project_from_the_best/main.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

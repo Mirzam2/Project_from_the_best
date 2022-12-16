@@ -6,27 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/Progi/praktika1/Casino_realization.cpp
+/mnt/d/Progi/Project_from_the_best/Casino_realization.cpp
 casino.h
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 
-/mnt/d/Progi/praktika1/Dice_realisation.cpp
+/mnt/d/Progi/Project_from_the_best/Dice_realisation.cpp
 casino.h
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 
-/mnt/d/Progi/praktika1/Game_realization.cpp
+/mnt/d/Progi/Project_from_the_best/Game_realization.cpp
 casino.h
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 
-/mnt/d/Progi/praktika1/Hostandplayers.cpp
+/mnt/d/Progi/Project_from_the_best/Hostandplayers.cpp
 casino.h
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 
-/mnt/d/Progi/praktika1/Roulete_realisation.cpp
+/mnt/d/Progi/Project_from_the_best/Roulete_realisation.cpp
 casino.h
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 iostream
 -
 ctime
@@ -37,8 +37,18 @@ fstream
 -
 ostream
 -
+vector
+-
+typeinfo
+-
+cstring
+-
+cstdlib
+-
+ostream
+-
 
-/mnt/d/Progi/praktika1/main.cpp
+/mnt/d/Progi/Project_from_the_best/main.cpp
 casino.h
-/mnt/d/Progi/praktika1/casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 

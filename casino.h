@@ -100,39 +100,35 @@ public:
 
 class Game
 {
-private:
+protected:
     Player *Players;
     Host Croupier;
-    int numofplayers =10;
+    int numofplayers=5;
 
 public:
     // игровой процесс
-    bool isequal();    // проверка на одинаковость ставок
-    bool isbankrupt(); // проверка обанкротился ли кто то из игроков
+    virtual bool isequal();    // проверка на одинаковость ставок
+    virtual bool isbankrupt(); // проверка обанкротился ли кто то из игроков
+    Game(Player *Players, Host Croupier, int numofplayers);
+    Game();
 };
 
 class Dices : public Game
 { // игра в кости
 private:
+    ofstream f;
     int *playerpoints; // массив с суммами очков каждого игрока
     int maxpoints;
-    Player *Players;
-    Host Croupier;
-	std::ofstream f;
-    int numofplayers = 5;
 
 public:
-    Dices(){}; // конструктор по умолчанию
-    Dices(Player *Players, Host Croupier, int numofplayers) : Players(Players), Croupier(Croupier), numofplayers(numofplayers)
-    {f.open("gamesdata.csv");
-    std::cout << "Number players: " << numofplayers<<"\n";
-    }
+    Dices(); // конструктор по умолчанию
+    Dices(Player *Players, Host Croupier, int numofplayers);
     Dices(int *playerpoints)
     { // кончтруктор
         this->playerpoints = playerpoints;
     };
-
-    int RollofDice(); // бросок костей
+    //bool isbankrupt(); //
+    int RollofDice();  // бросок костей
 
     void initplayerpoints(int a); // создание массива сумм очков
 
@@ -234,9 +230,9 @@ public:
 struct Card
 {
 public:
-    friend std::ostream& operator<<(std::ostream& out, const Card& obj); //оператор вывода карты
-    Card(); //конструктор по умолчанию
-    Card(std::string suit, std::string dignity); //конструктор
+    friend std::ostream &operator<<(std::ostream &out, const Card &obj); // оператор вывода карты
+    Card();                                                              // конструктор по умолчанию
+    Card(std::string suit, std::string dignity);                         // конструктор
     int get_nominal();
 
 private:
@@ -245,8 +241,7 @@ private:
     int nominal;
 };
 
-std::ostream& operator<<(std::ostream& out, const Card& obj);
-
+std::ostream &operator<<(std::ostream &out, const Card &obj);
 
 template <typename T>
 std::string toString(T val);
