@@ -116,7 +116,6 @@ public:
 class Dices : public Game
 { // игра в кости
 private:
-    ofstream f;
     int *playerpoints; // массив с суммами очков каждого игрока
     int maxpoints;
 
@@ -146,7 +145,6 @@ public:
 
     ~Dices()
     { // деструктор
-        f.close();
         delete[] Players;
         delete[] playerpoints;
     }

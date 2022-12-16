@@ -33,7 +33,6 @@ void Casino::Initplayers() {
 
 void Casino::game() {
 
-	ofstream f("gamesdata.csv");
 	int gamenumber;
 	cout << "Enter num of players" << endl;
 	Setnumofplayers();
@@ -64,12 +63,7 @@ void Casino::game() {
 		for (int i = 0; i < numofplayers; i++) {
 			cout << Players[i].GetName() << ' ';
 			Players[i].SetintBank();
-			f << Players[i].GetName() << ' ';
-		}f << endl;
-
-		for (int i = 0; i < numofplayers; i++) {
-			f << Players[i].getbank() << ',';
-		}f << endl;
+		}
 
 		play.initplayervalues(numofplayers);
 
@@ -253,10 +247,6 @@ void Casino::game() {
 				}
 			}
 
-			for (int i = 0; i < numofplayers; i++) {
-				f << Players[i].getbank() << ',';
-			}f << endl;
-
 			play.isbankrupt();
 
 			cout << endl;
@@ -272,7 +262,6 @@ void Casino::game() {
 			cout << "summary bet = " << Players[i].getsummarybet() << endl;
 			cout << "summary prize = " << Players[i].getsummaryprize() << endl;
 		}
-		f.close();
 		delete gamecontinue;
 
 	}
