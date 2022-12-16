@@ -64,20 +64,12 @@ int Dices::getmaxpoints()
 
 void Dices::game_process()
 {
-	int *gamecontinue = new int;
+	bool gamecontinue = true;
 	for (int i = 0; i < numofplayers; i++)
 	{
 		cout << Players[i].GetName() << ' ';
 		Players[i].SetintBank();
-		f << Players[i].GetName() << ' ';
 	}
-	f << endl;
-
-	for (int i = 0; i < numofplayers; i++)
-	{
-		f << Players[i].getbank() << ',';
-	}
-	f << endl;
 
 	do
 	{
@@ -167,21 +159,15 @@ void Dices::game_process()
 			Players[i].setwin(0);
 		}
 
-		for (int i = 0; i < numofplayers; i++)
-		{
-			f << Players[i].getbank() << ',';
-		}
-		f << endl;
-
 		isbankrupt();
 
 		cout << endl;
-		cout << "do you want to play again ? " << endl;
-		cout << "1) yes " << endl;
-		cout << "2) no " << endl;
+		cout << "Do you want to play again? " << endl;
+		cout << "0) No " << endl;
+		cout << "1) Yes " << endl;
 
-		cin >> *gamecontinue;
-	} while (*gamecontinue != 2 && isbankrupt() == false);
+		cin >> gamecontinue;
+	} while (gamecontinue && isbankrupt() == false);
 
 	for (int i = 0; i < numofplayers; i++)
 	{
@@ -189,9 +175,6 @@ void Dices::game_process()
 		cout << "summary bet = " << Players[i].getsummarybet() << endl;
 		cout << "summary prize = " << Players[i].getsummaryprize() << endl;
 	}
-
-	f.close();
-	delete gamecontinue;
 }
 
 /*void Dices::gameprocess() {
