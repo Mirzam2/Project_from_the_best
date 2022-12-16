@@ -145,6 +145,7 @@
     <ClCompile Include="Game_realization.cpp" />
     <ClCompile Include="Dice_realisation.cpp" />
     <ClCompile Include="Roulete_realisation.cpp" />
+    <ClCompile Include="BlackJack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="casino.h" />

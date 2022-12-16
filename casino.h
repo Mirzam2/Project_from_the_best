@@ -8,7 +8,7 @@
 #include <typeinfo>
 #include <cstring>
 #include <cstdlib>
-#include <ostream>
+#include <sstream>
 
 using namespace std;
 
@@ -241,7 +241,27 @@ private:
     int nominal;
 };
 
-std::ostream &operator<<(std::ostream &out, const Card &obj);
+std::ostream& operator<<(std::ostream& out, const Card& obj);
 
-template <typename T>
-std::string toString(T val);
+std::vector<Card> make_deck(int number_of_decks);
+
+struct Hand{
+public:
+    Hand(); //конструктор по умолчанию
+
+    Hand(std::vector<Card>& deck_of_cards); //конструктор от колоды
+
+    std::vector<Card> hand; //массив карт на руках
+
+    void getcard(std::vector<Card>& deck_of_cards); //добавление карты в руку
+
+    friend std::ostream& operator<<(std::ostream& out, const Card& obj);
+};
+
+std::ostream& operator<<(std::ostream& out, const Hand& obj);
+
+class BlackJack : public Game{
+public:
+private:
+    Hand* hands;
+};
