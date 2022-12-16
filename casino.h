@@ -8,7 +8,7 @@
 #include <typeinfo>
 #include <cstring>
 #include <cstdlib>
-#include <ostream>
+#include <sstream>
 
 using namespace std;
 
@@ -248,7 +248,4 @@ private:
 std::ostream& operator<<(std::ostream& out, const Card& obj);
 
 
-template <typename T>
-std::string toString(T val);
-
-std::vector<Card> make_deck(int number_of_decks);
+std::string toString(int val);

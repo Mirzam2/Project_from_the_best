@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\praktika1-main\BlackJack.cpp" />
     <ClCompile Include="Casino_realization.cpp" />
     <ClCompile Include="Hostandplayers.cpp" />
     <ClCompile Include="main.cpp" />

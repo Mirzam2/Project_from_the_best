@@ -33,6 +33,9 @@
     <ClCompile Include="Hostandplayers.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="..\praktika1-main\BlackJack.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="casino.h">
