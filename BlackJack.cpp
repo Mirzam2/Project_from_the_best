@@ -1,58 +1,49 @@
 #include "casino.h"
+#include <sstream>
+#include <string>
 
-/* Diamonds пїЅпїЅпїЅпїЅ
-   Hearts пїЅпїЅпїЅпїЅпїЅ
-   Clubs пїЅпїЅпїЅпїЅпїЅ
-   Spades пїЅпїЅпїЅпїЅ
-   Ace пїЅпїЅпїЅ
-   Jack пїЅпїЅпїЅпїЅпїЅ
-   Queen пїЅпїЅпїЅпїЅ
-   King пїЅпїЅпїЅпїЅпїЅпїЅ*/
+/* Diamonds Бубы
+   Hearts Черви
+   Clubs Трефы
+   Spades Пики
+   Ace Туз
+   Jack Валет
+   Queen Дама
+   King Король*/
 
-struct Card
-{
-public:
-    friend std::ostream& operator<<(std::ostream& out, const Card& obj);
-    Card() : suit(""), dignity(""), nominal(0) {}
-    Card(std::string suit, std::string dignity) : suit(suit), dignity(dignity) {
-        int tmp_dignity = atoi(dignity.c_str());
-        for (int i = 2; i <= 10; i++) {
-            if (i == tmp_dignity) {
-                nominal = i;
-                break;
-            }
-        }
-        if (dignity == "Jack" || dignity == "Queen" || dignity == "King") {
-            nominal = 10;
-        }
-        if (dignity == "Ace") {
-            nominal = 1;
+Card::Card() : suit(""), dignity(""), nominal(0) {}
+Card::Card(std::string suit, std::string dignity) : suit(suit), dignity(dignity) {
+    int tmp_dignity = atoi(dignity.c_str());
+    for (int i = 2; i <= 10; i++) {
+        if (i == tmp_dignity) {
+            nominal = i;
+            break;
         }
     }
-
-    int get_nominal() {
-        return nominal;
+    if (dignity == "Jack" || dignity == "Queen" || dignity == "King") {
+        nominal = 10;
     }
-private:
-    std::string suit;
-    std::string dignity;
-    int nominal;
-};
+    if (dignity == "Ace") {
+        nominal = 1;
+    }
+}
+
+int Card::get_nominal() {
+    return nominal;
+}
 
 std::ostream& operator<<(std::ostream& out, const Card& obj) {
     out << obj.suit << " " << obj.dignity << '\n';
     return out;
 }
 
-template <typename T>
-std::string toString(T val) {
-    std::ostringstream oss;
-    oss << val;
-    return oss.str();
+
+std::string toString(int val) {
+    std::string s = std::to_string(val);
+    return s;
 }
 
-
-std::vector<Card> make_deck (int number_of_decks) {
+std::vector<Card> make_deck(int number_of_decks) {
     std::vector<Card> deck_of_cards(52 * number_of_decks);
     std::string dignities[13];
     for (int i = 2; i <= 10; i++) {
@@ -79,25 +70,16 @@ std::vector<Card> make_deck (int number_of_decks) {
     return deck_of_cards;
 }
 
-struct Hand {
-public:
-    Hand() = default;
-    Hand(std::vector<Card>& deck_of_cards) {
-        getcard(deck_of_cards);
-        getcard(deck_of_cards);
-    }
-    std::vector<Card> hand;
-    void getcard(std::vector<Card>& deck_of_cards) {
-        hand.push_back(deck_of_cards[deck_of_cards.size() - 1]);
-        deck_of_cards.pop_back();
-    }
-    void print() {
-        for (int i = 0; i < hand.size(); i++) {
-            std::cout << hand[i] << '\n';
-        }
-    }
-    friend std::ostream& operator<<(std::ostream& out, const Card& obj);
-};
+Hand::Hand() = default;
+
+Hand::Hand(std::vector<Card>& deck_of_cards) {
+    getcard(deck_of_cards);
+    getcard(deck_of_cards);
+}
+void Hand::getcard(std::vector<Card>& deck_of_cards) {
+    hand.push_back(deck_of_cards[deck_of_cards.size() - 1]);
+    deck_of_cards.pop_back();
+}
 std::ostream& operator<<(std::ostream& out, const Hand& obj) {
     for (auto item : obj.hand)
     {
@@ -105,9 +87,3 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj) {
     }
     return out;
 }
-
-class Black_Jack : Game {
-private:
-
-public:
-};
