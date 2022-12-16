@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/Progi/praktika1/Casino_realization.cpp
+casino.h
+/mnt/d/Progi/praktika1/casino.h
+
+/mnt/d/Progi/praktika1/Dice_realisation.cpp
+casino.h
+/mnt/d/Progi/praktika1/casino.h
+
+/mnt/d/Progi/praktika1/Game_realization.cpp
+casino.h
+/mnt/d/Progi/praktika1/casino.h
+
+/mnt/d/Progi/praktika1/Hostandplayers.cpp
+casino.h
+/mnt/d/Progi/praktika1/casino.h
+
+/mnt/d/Progi/praktika1/Roulete_realisation.cpp
+casino.h
+/mnt/d/Progi/praktika1/casino.h
+
+/mnt/d/Progi/praktika1/casino.h
+iostream
+-
+ctime
+-
+string
+-
+fstream
+-
+ostream
+-
+
+/mnt/d/Progi/praktika1/main.cpp
+casino.h
+/mnt/d/Progi/praktika1/casino.h
+

@@ -1,0 +1,3 @@
+/mnt/d/Progi/praktika1/CMakeFiles/rebuild_cache.dir
+/mnt/d/Progi/praktika1/CMakeFiles/edit_cache.dir
+/mnt/d/Progi/praktika1/CMakeFiles/main.dir

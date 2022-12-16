@@ -1,0 +1,12 @@
+﻿  Casino_realization.cpp
+  Hostandplayers.cpp
+C:\Users\drozd\source\repos\casino\Hostandplayers.cpp(4,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  main.cpp
+  Game_realization.cpp
+  Dice_realisation.cpp
+C:\Users\drozd\source\repos\casino\Dice_realisation.cpp(19,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Roulete_realisation.cpp
+C:\Users\drozd\source\repos\casino\Roulete_realisation.cpp(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+C:\Users\drozd\source\repos\casino\Roulete_realisation.cpp(49,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
+  casino.vcxproj -> C:\Users\drozd\source\repos\casino\x64\Debug\casino.exe
