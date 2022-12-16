@@ -32,6 +32,6 @@
 *.app
 # vs code
 *.vscode
-./Debug
-./64
-./CmakeFiles
+/Debug
+/64
+/CmakeFiles
