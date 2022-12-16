@@ -1,14 +1,14 @@
-﻿  Casino_realization.cpp
+﻿  BlackJack.cpp
+C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\BlackJack.cpp(66,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Casino_realization.cpp
+  Dice_realisation.cpp
+C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\Dice_realisation.cpp(28,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Game_realization.cpp
   Hostandplayers.cpp
 C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\Hostandplayers.cpp(4,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  main.cpp
-  Game_realization.cpp
-  Dice_realisation.cpp
-C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\Dice_realisation.cpp(23,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   Roulete_realisation.cpp
 C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\Roulete_realisation.cpp(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
 C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\Roulete_realisation.cpp(49,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  BlackJack.cpp
-C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\BlackJack.cpp(66,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  main.cpp
   Создание кода...
   casino.vcxproj -> C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\x64\Debug\casino.exe

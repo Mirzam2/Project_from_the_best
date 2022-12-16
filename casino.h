@@ -262,6 +262,10 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj);
 
 class BlackJack : public Game{
 public:
+    BlackJack();
+    BlackJack(Player* Players, Host Croupier, int numofplayers);
+    void game_process();
 private:
     Hand* hands;
+    std::vector<Card> deck_of_cards_6 = make_deck(6);
 };

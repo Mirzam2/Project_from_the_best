@@ -76,14 +76,26 @@ Hand::Hand(std::vector<Card>& deck_of_cards) {
     getcard(deck_of_cards);
     getcard(deck_of_cards);
 }
+
 void Hand::getcard(std::vector<Card>& deck_of_cards) {
     hand.push_back(deck_of_cards[deck_of_cards.size() - 1]);
     deck_of_cards.pop_back();
 }
+
 std::ostream& operator<<(std::ostream& out, const Hand& obj) {
     for (auto item : obj.hand)
     {
         out << item;
     }
     return out;
+}
+
+BlackJack::BlackJack() : Game() {}
+
+BlackJack::BlackJack(Player* Players, Host Croupier, int numofplayers) {
+
+}
+
+void BlackJack::game_process() {
+
 }

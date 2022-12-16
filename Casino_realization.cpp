@@ -42,9 +42,10 @@ void Casino::game() {
 	cout << "there are list of our games, which you want to play ?" << endl;//Выбор игры, можно в отдельное место
 	cout << "1) dices" << endl;
 	cout << "2) roulete" << endl;
+	cout << "3) BlackJack" << endl;
 	cin >> gamenumber;
 
-	if (gamenumber != 1 && gamenumber != 2) { //проверка на то что выбрал правильно
+	if (gamenumber != 1 && gamenumber != 2 && gamenumber != 3) { //проверка на то что выбрал правильно
 		cout << "choose correct number of game" << endl;
 		cin >> gamenumber;
 	}
@@ -55,9 +56,7 @@ void Casino::game() {
 		
 		Dices play(Players,Croupier, numofplayers);
 		play.game_process();
-	}
-
-	else {
+	} else if (gamenumber == 2)  {
 		int* gamecontinue = new int;
 
 		Roulete play;
@@ -276,5 +275,9 @@ void Casino::game() {
 		f.close();
 		delete gamecontinue;
 
+	}
+	else { 
+		BlackJack play(Players, Croupier, numofplayers);
+		play.game_process();
 	}
 }
