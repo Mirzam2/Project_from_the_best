@@ -4,6 +4,12 @@
 #include <string>
 #include <fstream>
 #include <ostream>
+#include <vector>
+#include <typeinfo>
+#include <cstring>
+#include <cstdlib>
+#include <ostream>
+
 using namespace std;
 
 enum stavka
@@ -224,3 +230,25 @@ public:
         delete[] Players;
     }
 };
+
+struct Card
+{
+public:
+    friend std::ostream& operator<<(std::ostream& out, const Card& obj); //оператор вывода карты
+    Card(); //конструктор по умолчанию
+    Card(std::string suit, std::string dignity); //конструктор
+    int get_nominal();
+
+private:
+    std::string suit;
+    std::string dignity;
+    int nominal;
+};
+
+std::ostream& operator<<(std::ostream& out, const Card& obj);
+
+
+template <typename T>
+std::string toString(T val);
+
+std::vector<Card> make_deck(int number_of_decks);
