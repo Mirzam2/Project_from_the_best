@@ -247,10 +247,4 @@ private:
 
 std::ostream& operator<<(std::ostream& out, const Card& obj);
 
-
-<<<<<<< HEAD
-std::string toString(int val);
-=======
-template <typename T>
-std::string toString(T val);
->>>>>>> 4cc79a8d3b4c9110b3855e8960a112cb2625cb3b
+std::vector<Card> make_deck(int number_of_decks);
