@@ -250,5 +250,3 @@ std::ostream& operator<<(std::ostream& out, const Card& obj);
 
 template <typename T>
 std::string toString(T val);
-
-std::vector<Card> make_deck(int number_of_decks);

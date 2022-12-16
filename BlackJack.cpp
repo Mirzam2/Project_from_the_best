@@ -1,13 +1,13 @@
 #include "casino.h"
 
-/* Diamonds Бубы
-   Hearts Черви
-   Clubs Трефы
-   Spades Пики
-   Ace Туз
-   Jack Валет
-   Queen Дама
-   King Король*/
+/* Diamonds пїЅпїЅпїЅпїЅ
+   Hearts пїЅпїЅпїЅпїЅпїЅ
+   Clubs пїЅпїЅпїЅпїЅпїЅ
+   Spades пїЅпїЅпїЅпїЅ
+   Ace пїЅпїЅпїЅ
+   Jack пїЅпїЅпїЅпїЅпїЅ
+   Queen пїЅпїЅпїЅпїЅ
+   King пїЅпїЅпїЅпїЅпїЅпїЅ*/
 
 struct Card
 {
@@ -51,7 +51,6 @@ std::string toString(T val) {
     return oss.str();
 }
 
-std::vector<Card> make_deck(int number_of_decks);
 
 std::vector<Card> make_deck (int number_of_decks) {
     std::vector<Card> deck_of_cards(52 * number_of_decks);
