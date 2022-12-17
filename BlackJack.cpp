@@ -2,14 +2,14 @@
 #include <sstream>
 #include <string>
 
-/* Diamonds Бубы
-   Hearts Черви
-   Clubs Трефы
-   Spades Пики
-   Ace Туз
-   Jack Валет
-   Queen Дама
-   King Король*/
+/* Diamonds пїЅпїЅпїЅпїЅ
+   Hearts пїЅпїЅпїЅпїЅпїЅ
+   Clubs пїЅпїЅпїЅпїЅпїЅ
+   Spades пїЅпїЅпїЅпїЅ
+   Ace пїЅпїЅпїЅ
+   Jack пїЅпїЅпїЅпїЅпїЅ
+   Queen пїЅпїЅпїЅпїЅ
+   King пїЅпїЅпїЅпїЅпїЅпїЅ*/
 
 Card::Card() : suit(""), dignity(""), nominal(0) {}
 Card::Card(std::string suit, std::string dignity) : suit(suit), dignity(dignity) {
@@ -107,7 +107,7 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj) {
 
 BlackJack::BlackJack() : Game() {}
 
-BlackJack::BlackJack(Player* Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers){
+BlackJack::BlackJack(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers) : Game(std::move(Players), Croupier, numofplayers){
     deck_of_cards_6 = make_deck(6);
     for (int i = 0; i < numofplayers; i++) {
         Hand hand_tmp(deck_of_cards_6);

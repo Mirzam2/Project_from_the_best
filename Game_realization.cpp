@@ -22,5 +22,7 @@ bool Game::isbankrupt()
 	return false;
 }
 
-Game::Game(Player *Players, Host Croupier, int numofplayers) : Players(Players), Croupier(Croupier), numofplayers(numofplayers){};
+Game::Game(std::unique_ptr<Player[]> Playerss, Host Croupier, int numofplayers) :Croupier(Croupier), numofplayers(numofplayers){
+	Players = std::move(Playerss);
+};
 Game::Game(){};

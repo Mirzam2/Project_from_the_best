@@ -27,7 +27,7 @@ string couteven(bool iseven)
 void Casino::Setnumofplayers()
 {
 	std::cin >> numofplayers;
-	Players = new Player[numofplayers];
+	Players = std::make_unique<Player[]>(numofplayers);
 }
 
 int Casino::Getnumofplayers()
@@ -68,18 +68,18 @@ void Casino::game()
 	if (gamenumber == 1)
 	{
 
-		Dices play(Players, Croupier, numofplayers);
+		Dices play(std::move(Players), Croupier, numofplayers);
 		play.game_process();
 	}
 	else if (gamenumber == 2)
 	{
 
-		Roulete play(Players, Croupier, numofplayers);
+		Roulete play(std::move(Players), Croupier, numofplayers);
 		play.game_process(Casinobank);
 	}
 	else
 	{
-		BlackJack play(Players, Croupier, numofplayers);
+		BlackJack play(std::move(Players), Croupier, numofplayers);
 		play.game_process();
 	}
 }
