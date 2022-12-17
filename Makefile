@@ -123,6 +123,33 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+BlackJack.o: BlackJack.cpp.o
+
+.PHONY : BlackJack.o
+
+# target to build an object file
+BlackJack.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/BlackJack.cpp.o
+.PHONY : BlackJack.cpp.o
+
+BlackJack.i: BlackJack.cpp.i
+
+.PHONY : BlackJack.i
+
+# target to preprocess a source file
+BlackJack.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/BlackJack.cpp.i
+.PHONY : BlackJack.cpp.i
+
+BlackJack.s: BlackJack.cpp.s
+
+.PHONY : BlackJack.s
+
+# target to generate assembly for a file
+BlackJack.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/BlackJack.cpp.s
+.PHONY : BlackJack.cpp.s
+
 Casino_realization.o: Casino_realization.cpp.o
 
 .PHONY : Casino_realization.o
@@ -294,6 +321,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
+	@echo "... BlackJack.o"
+	@echo "... BlackJack.i"
+	@echo "... BlackJack.s"
 	@echo "... Casino_realization.o"
 	@echo "... Casino_realization.i"
 	@echo "... Casino_realization.s"

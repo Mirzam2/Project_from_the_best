@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/main.dir/BlackJack.cpp.o"
   "CMakeFiles/main.dir/Casino_realization.cpp.o"
   "CMakeFiles/main.dir/Dice_realisation.cpp.o"
   "CMakeFiles/main.dir/Game_realization.cpp.o"

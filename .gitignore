@@ -33,5 +33,5 @@
 # vs code
 *.vscode
 /Debug
-/64
+/x64
 /CmakeFiles
