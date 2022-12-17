@@ -1,6 +1,7 @@
 #include "casino.h"
 #include <sstream>
 #include <string>
+#include <memory>
 
 /* Diamonds ����
    Hearts �����
@@ -156,8 +157,7 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj) {
 BlackJack::BlackJack() : Game() {}
 
 BlackJack::BlackJack(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers) : Game(std::move(Players), Croupier, numofplayers){
-    deck_of_cards_6 = make_deck(6);
-
+   deck_of_cards_6 = make_deck(6);
     bets = new int* [numofplayers];
     for (int i = 0; i < numofplayers; ++i) {
         bets[i] = new int[2];
@@ -171,30 +171,6 @@ BlackJack::BlackJack(std::unique_ptr<Player[]> Players, Host Croupier, int numof
     for (int i = 0; i < numofplayers; ++i) {
         hands[i] = new Hand[2];
     }
-
-    for (int i = 0; i < numofplayers; i++)
-    
-    {
-        std::cout << Players[i].GetName() << ' ';
-        Players[i].SetintBank();
-    }
-
-    for (int i = 0; i < numofplayers; ++i) {
-        std::cout << Players[i].GetName() << ' ';
-        Players[i].SetBet();
-        Players[i].setcurrbank();
-        bets[i][0] = Players[i].getbet();
-    }
-
-    for (int i = 0; i < numofplayers; i++) {
-        hands[i][0].make_hand(deck_of_cards_6);
-        hands[i][1] = hands[i][0];
-        std::cout << Players[i].GetName() << '\n' << hands[i][0] << '\n' << '\n';
-    }
-
-    Croupier_hand.make_hand(deck_of_cards_6);
-
-    Croupier_hand.print_card();
 }
 
 bool BlackJack::Isace() {
@@ -258,6 +234,29 @@ void BlackJack::Croupier_take() {
     }
 }
 void BlackJack::game_process() {
+    for (int i = 0; i < numofplayers; i++) {
+        std::cout << i << '\n';
+        std::cout << Players[i].GetName() << ' ';
+        Players[i].SetintBank();
+    }
+
+    for (int i = 0; i < numofplayers; ++i) {
+        std::cout << Players[i].GetName() << ' ';
+        Players[i].SetBet();
+        Players[i].setcurrbank();
+        bets[i][0] = Players[i].getbet();
+    }
+
+    for (int i = 0; i < numofplayers; i++) {
+        hands[i][0].make_hand(deck_of_cards_6);
+        hands[i][1] = hands[i][0];
+        std::cout << Players[i].GetName() << '\n' << hands[i][0] << '\n' << '\n';
+    }
+
+    Croupier_hand.make_hand(deck_of_cards_6);
+
+    Croupier_hand.print_card();
+
     for (int i = 0; i < numofplayers; ++i) {
         std::cout << "Would you like to take card? 1)Yes 2)No" << '\n';
         while (anser() && hands[i][0].handpoint() < 21) {

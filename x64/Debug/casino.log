@@ -1,3 +1,3 @@
 ﻿  BlackJack.cpp
-C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\BlackJack.cpp(90,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\BlackJack.cpp(91,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   casino.vcxproj -> C:\Users\Копатыч2\OneDrive\Рабочий стол\Project_from_the_best\x64\Debug\casino.exe
