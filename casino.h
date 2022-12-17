@@ -157,14 +157,15 @@ private:
     rouletevalue *playervalues; // массив со значениями на которые поставили игроки
 
 public:
-    Roulete(){};
+    Roulete();
+    Roulete(Player *Players, Host Croupier, int numofplayers);
 
     Roulete(rouletevalue computerval, rouletevalue *playervalues)
     {
         this->computerval = computerval;
         this->playervalues = playervalues;
     }
-    void game_process(Player *Players, Host Croupier, ofstream f, int numofplayers);
+    void game_process(int &Casinobank);
     void initplayervalues(int n); // создание массива ставок
 
     void setplayervalnum(int index, int a); // присваивание числового значения по индексу в массив

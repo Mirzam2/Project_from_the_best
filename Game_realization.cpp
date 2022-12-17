@@ -13,6 +13,7 @@ bool Game::isequal() {
 }
 bool Game::isbankrupt() {
 	std::cout << "isbankrupt \n";
+	std::cout << numofplayers << " ";
 	for (int i = 0; i < numofplayers; i++) {
 		if (Players[i].getbank() == 0) {return true;}
 	}

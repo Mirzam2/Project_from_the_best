@@ -2,7 +2,7 @@
 Dices::Dices() : Game(){}; // конструктор по умолчанию
 Dices::Dices(Player *Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers)
 {
-	std::cout << "Number players: " << numofplayers << "\n";
+	std::cout << "Game Dices start \n Number players: " << numofplayers << "\n";
 }
 
 int Dices::RollofDice()
