@@ -82,6 +82,21 @@ void Hand::getcard(std::vector<Card>& deck_of_cards) {
     deck_of_cards.pop_back();
 }
 
+Hand& Hand::operator=(const Hand& other) {
+    if (this == &other)
+        return *this;
+    hand.clear();
+    this->hand = other.hand;
+}
+
+Hand& Hand::operator=(Hand&& other) {
+    if (this == &other)
+        return *this;
+    hand.clear();
+    this->hand = other.hand;
+    other.hand.clear();
+}
+
 std::ostream& operator<<(std::ostream& out, const Hand& obj) {
     for (auto item : obj.hand)
     {
@@ -92,8 +107,14 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj) {
 
 BlackJack::BlackJack() : Game() {}
 
-BlackJack::BlackJack(Player* Players, Host Croupier, int numofplayers) {
-
+BlackJack::BlackJack(Player* Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers){
+    deck_of_cards_6 = make_deck(6);
+    for (int i = 0; i < numofplayers; i++) {
+        Hand hand_tmp(deck_of_cards_6);
+        hands[i] = hand_tmp;
+    }
+    Hand Croupier_hand;
+    Croupier_hand.getcard(deck_of_cards_6);
 }
 
 void BlackJack::game_process() {

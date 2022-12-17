@@ -253,6 +253,10 @@ public:
 
     void getcard(std::vector<Card>& deck_of_cards); //добавление карты в руку
 
+    Hand& operator=(const Hand& other);
+
+    Hand& operator=(Hand&& other);
+
     friend std::ostream& operator<<(std::ostream& out, const Card& obj);
 };
 
