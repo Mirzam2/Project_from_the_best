@@ -1,5 +1,4 @@
 #include "casino.h"
-using namespace std;
 
 string coutblack(bool isblack)
 {
@@ -27,7 +26,7 @@ string couteven(bool iseven)
 
 void Casino::Setnumofplayers()
 {
-	cin >> numofplayers;
+	std::cin >> numofplayers;
 	Players = new Player[numofplayers];
 }
 
@@ -38,9 +37,9 @@ int Casino::Getnumofplayers()
 
 void Casino::Initplayers()
 {
-	for (int i = 0; i < numofplayers; i++)
+	for (int i = 0; i < numofplayers; ++i)
 	{
-		cout << "Enter name of " << i + 1 << " player" << endl;
+		std::cout << "Enter name of " << i + 1 << " player" << '\n';
 		Players[i].SetName();
 	}
 }
@@ -49,23 +48,23 @@ void Casino::game()
 {
 
 	int gamenumber;
-	cout << "Enter num of players" << endl;
+	std::cout << "Enter num of players" << '\n';
 	Setnumofplayers();
 	Initplayers();
 
-	cout << "there are list of our games, which you want to play ?" << endl; // Выбор игры, можно в отдельное место
-	cout << "1) dices" << endl;
-	cout << "2) roulete" << endl;
-	cout << "3) BlackJack" << endl;
-	cin >> gamenumber;
+	std::cout << "there are list of our games, which you want to play ?" << '\n'; // Выбор игры, можно в отдельное место
+	std::cout << "1) dices" << '\n';
+	std::cout << "2) roulete" << '\n';
+	std::cout << "3) BlackJack" << '\n';
+	std::cin >> gamenumber;
 
 	if (gamenumber != 1 && gamenumber != 2 && gamenumber != 3)
 	{ // проверка на то что выбрал правильно
-		cout << "choose correct number of game" << endl;
-		cin >> gamenumber;
+		std::cout << "choose correct number of game" << '\n';
+		std::cin >> gamenumber;
 	}
 	Croupier.SetName();
-	cout << "your croupier is " << Croupier.GetName() << endl;
+	std::cout << "your croupier is " << Croupier.GetName() << '\n';
 	if (gamenumber == 1)
 	{
 

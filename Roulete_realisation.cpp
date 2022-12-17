@@ -1,13 +1,12 @@
 #include "casino.h";
-using namespace std;
 Roulete::Roulete() : Game() {}
 Roulete::Roulete(Player *Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers)
 {
 	std::cout << "Game Roulete start \n Number players: " << numofplayers << "\n";
 }
-void Roulete::initplayervalues(int n)
+void Roulete::initplayervalues()
 {
-	playervalues = new rouletevalue[n];
+	playervalues = new rouletevalue[numofplayers];
 }
 
 void Roulete::setplayervalnum(int index, int a)
@@ -67,7 +66,7 @@ void Roulete::RollofRoulete()
 	int *blacknums = new int[18]{2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35};
 
 	computerval.value = rand() % 37;
-
+	std::cout << "A number fell on the roulette wheel: " << computerval.value << '\n';
 	if (computerval.value == 0)
 	{
 		computerval.iszero = 1;
@@ -86,7 +85,7 @@ void Roulete::RollofRoulete()
 	int *numblack = new int;
 	*numblack = 0;
 
-	for (int i = 0; i < 18; i++)
+	for (int i = 0; i < 18; ++i)
 	{
 		if (computerval.value == blacknums[i])
 		{
@@ -125,45 +124,59 @@ bool Roulete::getcompzero()
 {
 	return computerval.iszero;
 }
+void Roulete::lose(int index, int &Casinobank)
+{
+	Players[index].SetPrize(0);
+	Casinobank -= Players[index].getcurrprize();
+	std::cout << Players[index].GetName() << " you loose" << '\n';
+	Players[index].SetoutBank();
+};
+void Roulete::win(int index, int &Casinobank, int multy)
+{
+	Players[index].SetPrize(multy * Players[index].getbet());
+	Casinobank -= Players[index].getcurrprize();
+	std::cout << Players[index].GetName() << " ,you win, your prizesumm " << Players[index].getcurrprize() << '\n';
+	Players[index].SetoutBank();
+};
 void Roulete::game_process(int &Casinobank)
 {
 	bool gamecontinue = true;
-	for (int i = 0; i < numofplayers; i++)
+	for (int i = 0; i < numofplayers; ++i)
 	{
 		cout << Players[i].GetName() << ' ';
 		Players[i].SetintBank();
 	}
 
-	initplayervalues(numofplayers);
+	initplayervalues();
 
 	do
 	{
-		for (int i = 0; i < numofplayers; i++)
+		for (int i = 0; i < numofplayers; ++i)
 		{
 			int n;
-			cout << Players[i].GetName() << " what do you want to bet ?" << endl;
-			cout << "1) color " << endl;
-			cout << "2) number" << endl;
-			cout << "3) range " << endl;
-			cout << "4) even/not even " << endl;
-			cin >> n;
+			std::cout << Players[i].GetName() << " what do you want to bet?" << '\n';
+			std::cout << "1) color " << '\n';
+			std::cout << "2) number" << '\n';
+			std::cout << "3) range " << '\n';
+			std::cout << "4) even/not even " << '\n';
+			std::cin >> n;
 
 			if (n == 1)
 			{
 				setplayerbet(i, color);
 
 				int colornum;
-				cout << "what color do you want to make a bet ?" << endl;
-				cout << "1) Red" << endl;
-				cout << "2) Black " << endl;
-				cin >> colornum;
+				std::cout << "what color do you want to make a bet ?" << '\n';
+				std::cout << "1) Red" << '\n';
+				std::cout << "2) Black " << '\n';
+				std::cin >> colornum;
 
 				if (colornum != 1 && colornum != 2)
 				{
 					while (colornum != 1 && colornum != 2)
 					{
-						cout << "choose correct number of color";
-						cin >> colornum;
+						std::cout << "choose correct number of color";
+						std::cin >> colornum;
 					}
 				}
 
@@ -185,24 +198,20 @@ void Roulete::game_process(int &Casinobank)
 				setplayerbet(i, number);
 
 				int number;
-				cout << "what number do you want to bet on ?" << endl;
-				cin >> number;
+				std::cout << "what number do you want to bet on ?" << '\n';
+				std::cin >> number;
 				if (number > 36 || number < 0)
 				{
 					while (number > 36 || number < 0)
 					{
-						cout << "the number you want to bet on should be in the range from 0 to 36, choose another number." << endl;
-						cin >> number;
+						std::cout << "the number you want to bet on should be in the range from 0 to 36, choose another number." << '\n';
+						std::cin >> number;
 					}
 				}
 
 				setplayervalnum(i, number);
-				if (number == 0)
-				{
-					setplayervaliszero(i, true);
-				}
-				else
-					setplayervaliszero(i, false);
+
+				setplayervaliszero(i, (number == 0));
 
 				Players[i].SetBet();
 				Players[i].setsummarybet(Players[i].getbet());
@@ -215,17 +224,17 @@ void Roulete::game_process(int &Casinobank)
 				setplayerbet(i, range);
 
 				int rangenumber;
-				cout << "what range do you want to bet on ?" << endl;
-				cout << "1) 0 - 17 " << endl;
-				cout << "2) 18 - 36 " << endl;
-				cin >> rangenumber;
+				std::cout << "what range do you want to bet on ?" << '\n';
+				std::cout << "1) 0 - 17 " << '\n';
+				std::cout << "2) 18 - 36 " << '\n';
+				std::cin >> rangenumber;
 
 				if (rangenumber != 1 && rangenumber != 2)
 				{
 					while (rangenumber != 1 && rangenumber != 2)
 					{
-						cout << "enter correct number of range" << endl;
-						cin >> rangenumber;
+						std::cout << "enter correct number of range" << '\n';
+						std::cin >> rangenumber;
 					}
 				}
 
@@ -247,26 +256,20 @@ void Roulete::game_process(int &Casinobank)
 				setplayerbet(i, even);
 
 				int evennum;
-				cout << "what do you want to bet on ?" << endl;
-				cout << "1) not even" << endl;
-				cout << "2) is even" << endl;
-				cin >> evennum;
+				std::cout << "what do you want to bet on ?" << '\n';
+				std::cout << "1) not even" << '\n';
+				std::cout << "2) is even" << '\n';
+				std::cin >> evennum;
 
 				if (evennum != 1 && evennum != 2)
 				{
 					while (evennum != 1 && evennum != 2)
 					{
-						cout << "choose correct number of your bet" << endl;
-						cin >> evennum;
+						std::cout << "choose correct number of your bet" << '\n';
+						std::cin >> evennum;
 					}
 				}
-
-				if (evennum == 1)
-				{
-					setplayervaliseven(i, false);
-				}
-				else
-					setplayervaliseven(i, true);
+				setplayervaliseven(i, not(evennum == 1));
 
 				Players[i].SetBet();
 				Players[i].setsummarybet(Players[i].getbet());
@@ -277,24 +280,18 @@ void Roulete::game_process(int &Casinobank)
 
 		RollofRoulete();
 
-		for (int i = 0; i < numofplayers; i++)
+		for (int i = 0; i < numofplayers; ++i)
 		{
 
 			if (getplayerstavka(i) == color)
 			{
 				if (getplayervalisblack(i) == getcompblack())
 				{
-					Players[i].SetPrize(2 * Players[i].getbet());
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " ,you win, your prizesumm " << Players[i].getcurrprize() << endl;
-					Players[i].SetoutBank();
+					win(i, Casinobank, 2);
 				}
 				else
 				{
-					Players[i].SetPrize(0);
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " you loose" << endl;
-					Players[i].SetoutBank();
+					lose(i, Casinobank);
 				}
 			}
 
@@ -302,17 +299,11 @@ void Roulete::game_process(int &Casinobank)
 			{
 				if (getplayervalnum(i) == getcompnum())
 				{
-					Players[i].SetPrize(37 * Players[i].getbet());
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " ,you win, your prizesumm " << Players[i].getcurrprize() << endl;
-					Players[i].SetoutBank();
+					win(i, Casinobank, 37);
 				}
 				else
 				{
-					Players[i].SetPrize(0);
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " you loose" << endl;
-					Players[i].SetoutBank();
+					lose(i, Casinobank);
 				}
 			}
 
@@ -320,59 +311,41 @@ void Roulete::game_process(int &Casinobank)
 			{
 				if (getplayervaliseven(i) == getcompeven() && getcompzero() == false)
 				{
-					Players[i].SetPrize(2 * Players[i].getbet());
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " ,you win, your prizesumm " << Players[i].getcurrprize() << endl;
-					Players[i].SetoutBank();
+					win(i, Casinobank, 2);
 				}
 				else
 				{
-					Players[i].SetPrize(0);
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " you loose" << endl;
-					Players[i].SetoutBank();
+					lose(i, Casinobank);
 				}
 			}
 			else if (getplayerstavka(i) == range)
 			{
 				if (getplayervalnum(i) == 17 && getplayervalnum(i) >= getcompnum())
 				{
-					Players[i].SetPrize(2 * Players[i].getbet());
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " ,you win, your prizesumm " << Players[i].getcurrprize() << endl;
-					Players[i].SetoutBank();
+					win(i, Casinobank, 2);
 				}
 				else if (getplayervalnum(i) == 18 && getplayervalnum(i) <= getcompnum())
 				{
-					Players[i].SetPrize(2 * Players[i].getbet());
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " ,you win, your prizesumm " << Players[i].getcurrprize() << endl;
-					Players[i].SetoutBank();
+					win(i, Casinobank, 2);
 				}
 				else
 				{
-					Players[i].SetPrize(0);
-					Casinobank -= Players[i].getcurrprize();
-					cout << Players[i].GetName() << " you loose" << endl;
-					Players[i].SetoutBank();
+					lose(i, Casinobank);
 				}
 			}
 		}
 
-		isbankrupt();
-
-		cout << endl;
-		cout << "do you want to play again ? " << endl;
-		cout << "1) Yes " << endl;
-		cout << "0) No " << endl;
-
-		cin >> gamecontinue;
+		std::cout << '\n';
+		std::cout << "do you want to play again ? " << '\n';
+		std::cout << "1) Yes " << '\n';
+		std::cout << "0) No " << '\n';
+		std::cin >> gamecontinue;
 	} while (gamecontinue && isbankrupt() != true && Casinobank > 0);
 
-	for (int i = 0; i < numofplayers; i++)
+	for (int i = 0; i < numofplayers; ++i)
 	{
-		cout << Players[i].GetName() << ':' << endl;
-		cout << "summary bet = " << Players[i].getsummarybet() << endl;
-		cout << "summary prize = " << Players[i].getsummaryprize() << endl;
+		std::cout << Players[i].GetName() << ':' << '\n';
+		std::cout << "summary bet = " << Players[i].getsummarybet() << '\n';
+		std::cout << "summary prize = " << Players[i].getsummaryprize() << '\n';
 	}
 }

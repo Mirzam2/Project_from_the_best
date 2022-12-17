@@ -64,34 +64,34 @@ int Player::getbet() {
 }
 
 void Player::SetintBank() {
-	cout << "How much coins you have for this Player ?" << endl;
+	cout << "How much coins you have for this Player ?" << '\n';
 	cin >> bank;
 	if (bank <= 0) {
 		while (bank <= 0) {
-			cout << "you can't play without coins, enter bank" << endl;
+			cout << "you can't play without coins, enter bank" << '\n';
 			cin >> bank;
 		}
 	}
 }
 
 void Player::SetBet() {
-	cout << "How much coins do you want to bet ?" << endl;
+	cout << "How much coins do you want to bet ?" << '\n';
 	cin >> bet;
 	if (bet > bank || bet == 0) {
 		while (bet > bank || bet == 0) {
-			cout << "you can't bet that much, change the bid" << endl;
+			cout << "you can't bet that much, change the bid" << '\n';
 			cin >> bet;
 		}
 	}
-	cout << "You made a bet of " << bet << " coins" << endl;
+	cout << "You made a bet of " << bet << " coins" << '\n';
 }
 
 void Player::setcurrbank() {
 	bank -= bet;
-	cout << "In your bank now " << bank << " coins" << endl;
+	cout << "In your bank now " << bank << " coins" << '\n';
 }
 
 void Player::SetoutBank() {
 	bank += prizesumm;
-	cout << "After Player your bank is " << bank << " coins" << endl;
+	cout << "After Player your bank is " << bank << " coins" << '\n';
 }

@@ -15,7 +15,7 @@ int Dices::RollofDice()
 void Dices::initplayerpoints(int a)
 {
 	playerpoints = new int[a];
-	for (int i = 0; i < a; i++)
+	for (int i = 0; i < a; ++i)
 	{
 		playerpoints[i] = 0;
 	}
@@ -25,7 +25,7 @@ void Dices::setpoints(int a)
 {
 	initplayerpoints(a);
 	srand(time(0));
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; ++i)
 	{
 		for (int j = 0; j < a; j++)
 		{
@@ -36,7 +36,7 @@ void Dices::setpoints(int a)
 
 void Dices::coutpoints(int index)
 {
-	cout << "summ of points = " << playerpoints[index] << endl;
+	cout << "summ of points = " << playerpoints[index] << '\n';
 }
 
 int Dices::getpoints(int a)
@@ -47,7 +47,7 @@ int Dices::getpoints(int a)
 void Dices::setmaxpoints(int a)
 {
 	maxpoints = playerpoints[0];
-	for (int i = 0; i < a; i++)
+	for (int i = 0; i < a; ++i)
 	{
 		if (playerpoints[i] > maxpoints)
 		{
@@ -64,7 +64,7 @@ int Dices::getmaxpoints()
 void Dices::game_process()
 {
 	bool gamecontinue = true;
-	for (int i = 0; i < numofplayers; i++)
+	for (int i = 0; i < numofplayers; ++i)
 	{
 		cout << Players[i].GetName() << ' ';
 		Players[i].SetintBank();
@@ -73,7 +73,7 @@ void Dices::game_process()
 	do
 	{
 
-		for (int i = 0; i < numofplayers; i++)
+		for (int i = 0; i < numofplayers; ++i)
 		{
 			cout << Players[i].GetName() << ' ';
 			Players[i].SetBet();
@@ -82,8 +82,8 @@ void Dices::game_process()
 		{
 			while (isequal() == false)
 			{
-				cout << "For this game all bets must be equal, enter correct bets" << endl;
-				for (int i = 0; i < numofplayers; i++)
+				cout << "For this game all bets must be equal, enter correct bets" << '\n';
+				for (int i = 0; i < numofplayers; ++i)
 				{
 					cout << Players[i].GetName() << ' ';
 					Players[i].SetBet();
@@ -92,14 +92,14 @@ void Dices::game_process()
 		}
 		// Игроки делают ставки
 
-		for (int i = 0; i < numofplayers; i++)
+		for (int i = 0; i < numofplayers; ++i)
 		{
 			cout << Players[i].GetName() << ' ';
 			Players[i].setcurrbank();
 		}
 		// Показывает столько у кого сколько денег осталось
 
-		for (int i = 0; i < numofplayers; i++)
+		for (int i = 0; i < numofplayers; ++i)
 		{
 			Players[i].setsummarybet(Players[i].getbet());
 		}
