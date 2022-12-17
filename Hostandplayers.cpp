@@ -96,3 +96,11 @@ void Player::SetoutBank() {
 	bank += prizesumm;
 	cout << "After Player your bank is " << bank << " coins" << '\n';
 }
+
+void Player::setcurrbank_by_value(int val) {
+	bank -= val;
+}
+
+void Player::SetoutBank_by_value(int val) {
+	bank += val;
+}

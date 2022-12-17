@@ -11,6 +11,14 @@
    Queen Дама
    King Король*/
 
+bool anser() {
+    int a = 0;
+    std::cin >> a;
+    if (a == 1) {
+        return true;
+    }
+    return false;
+}
 Card::Card() : suit(""), dignity(""), nominal(0) {}
 Card::Card(std::string suit, std::string dignity) : suit(suit), dignity(dignity) {
     int tmp_dignity = atoi(dignity.c_str());
@@ -129,6 +137,14 @@ void Hand::print_card() {
     std::cout << hand.front();
     std::cout << "XXXXXXXXXX" << '\n';
 }
+
+Hand& Hand::operator=(const Hand& other) {
+    if (this == &other)
+        return *this;
+    this->hand = other.hand;
+    return *this;
+}
+
 std::ostream& operator<<(std::ostream& out, const Hand& obj) {
     for (auto item : obj.hand)
     {
@@ -140,39 +156,127 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj) {
 BlackJack::BlackJack() : Game() {}
 
 BlackJack::BlackJack(Player* Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers){
-    deck_of_cards_6 = make_deck(6);
-
     bets = new int* [numofplayers];
     for (int i = 0; i < numofplayers; ++i) {
         bets[i] = new int[2];
     }
 
-    Hand* hands = new Hand[numofplayers];
+    for (int i = 0; i < numofplayers; ++i) {
+        bets[i][1] = 0;
+    }
+
+    hands = new Hand* [numofplayers];
+    for (int i = 0; i < numofplayers; ++i) {
+        hands[i] = new Hand[2];
+    }
 
     for (int i = 0; i < numofplayers; i++)
     
     {
-        cout << Players[i].GetName() << ' ';
+        std::cout << Players[i].GetName() << ' ';
         Players[i].SetintBank();
     }
 
     for (int i = 0; i < numofplayers; ++i) {
-        cout << Players[i].GetName() << ' ';
+        std::cout << Players[i].GetName() << ' ';
         Players[i].SetBet();
         Players[i].setcurrbank();
         bets[i][0] = Players[i].getbet();
     }
 
     for (int i = 0; i < numofplayers; i++) {
-        hands[i].make_hand(deck_of_cards_6);
-        std::cout << Players[i].GetName() << '\n' << hands[i] << '\n' << '\n';
+        hands[i][0].make_hand(deck_of_cards_6);
+        hands[i][1] = hands[i][0];
+        std::cout << Players[i].GetName() << '\n' << hands[i][0] << '\n' << '\n';
     }
 
-    Hand Croupier_hand(deck_of_cards_6);
+    Croupier_hand.make_hand(deck_of_cards_6);
 
     Croupier_hand.print_card();
 }
 
+bool BlackJack::Isace() {
+    if (Croupier_hand.hand.front().get_nominal() == 11) {
+        return true;
+    }
+    return false;
+}
+void BlackJack::split(int i) {
+    bets[i][1] = bets[i][0];
+    Players[i].setcurrbank();
+    hands[i][1].drop_card();
+    hands[i][1].drop_card();
+    hands[i][1].getcard(hands[i][0].hand);
+}
+
+void BlackJack::double_down(int i) {
+    Players[i].setcurrbank_by_value(bets[i][0]);
+    bets[i][0] *= 2;
+}
+
+void BlackJack::surrender(int i) {
+    hands[i][0].drop_card();
+    hands[i][0].drop_card();
+    hands[i][1].drop_card();
+    hands[i][1].drop_card();
+    Players[i].SetoutBank_by_value(bets[i][0] / 2);
+    bets[i][0] = 0;
+}
+
+void BlackJack::insurance(int i) {
+    if (Isace()) {
+        bets[i][1] = bets[i][0] / 2;
+        Players[i].setcurrbank_by_value(bets[i][1]);
+    }
+}
+
+void BlackJack::isBlackJAck(int i) {
+    if (hands[i][0].handpoint() == 21) {
+        if (Isace()) {
+            int a = 0;
+            std::cout << "Do you want to get even money? 1)Yes 2)No" << '\n';
+            std::cin >> a;
+            if (a == 1) {
+                even_money(i);
+            }
+        }
+        Players[i].SetoutBank_by_value(bets[i][0] * 5 / 2);
+    }
+}
+
+void BlackJack::even_money(int i)
+{
+    Players[i].SetoutBank_by_value(bets[i][0] * 2);
+    bets[i][0] = 0;
+}
+
+void BlackJack::Croupier_take() {
+    while (Croupier_hand.handpoint() < 17) {
+        Croupier_hand.getcard(deck_of_cards_6);
+    }
+}
 void BlackJack::game_process() {
+    for (int i = 0; i < numofplayers; ++i) {
+        std::cout << "Would you like to take card? 1)Yes 2)No" << '\n';
+        while (anser() && hands[i][0].handpoint() < 21) {
+            hands[i][0].getcard(deck_of_cards_6);
+            std::cout << hands[i][0] << '\n' << hands[i][0].handpoint();
+            std::cout << "Would you like to take card? 1)Yes 2)No" << '\n';
+        }
+    }
+
+    std::cout << Croupier_hand << '\n';
+    Croupier_take();
+
+    for (int i = 0; i < numofplayers; ++i) {
+        if (hands[i][0].handpoint() > 21) {
+            std::cout << "Yuo lose" << '\n';
+            bets[i][0] = 0;
+        }
+        else if (Croupier_hand.handpoint() > 21) {
+            std::cout << "You win" << '\n';
+            Players[i].SetoutBank_by_value(bets[i][0] * 2);
+        }
+    }
     std::cout << "not now" << '\n';
 }

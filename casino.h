@@ -95,6 +95,10 @@ public:
     int getsummaryprize(); // возвращает суммарный приз
 
     int getcurrprize(); // возвращает приз за 1 игру
+
+    void setcurrbank_by_value(int val);
+
+    void SetoutBank_by_value(int val);
 };
 
 class Game
@@ -226,6 +230,8 @@ public:
     }
 };
 
+bool anser();
+
 struct Card
 {
 public:
@@ -257,7 +263,7 @@ public:
 
     void getcard(std::vector<Card>& deck_of_cards); //добавление карты в руку
 
-    //Hand& operator=(const Hand& other);
+    Hand& operator=(const Hand& other);
 
     //Hand& operator=(Hand&& other);
 
@@ -279,8 +285,17 @@ public:
     BlackJack();
     BlackJack(Player* Players, Host Croupier, int numofplayers);
     void game_process();
+    bool Isace();
+    void split(int i);
+    void double_down(int i);
+    void surrender(int i);
+    void insurance(int i);
+    void isBlackJAck(int i);
+    void even_money(int i);
+    void Croupier_take();
 private:
-    Hand* hands;
+    Hand** hands;
     int** bets;
     std::vector<Card> deck_of_cards_6 = make_deck(6);
+    Hand Croupier_hand;
 };
