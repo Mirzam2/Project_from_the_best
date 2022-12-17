@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/mnt/d/Progi/Project_from_the_best/BlackJack.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/BlackJack.cpp.o"
   "/mnt/d/Progi/Project_from_the_best/Casino_realization.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Casino_realization.cpp.o"
   "/mnt/d/Progi/Project_from_the_best/Dice_realisation.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Dice_realisation.cpp.o"
   "/mnt/d/Progi/Project_from_the_best/Game_realization.cpp" "/mnt/d/Progi/Project_from_the_best/CMakeFiles/main.dir/Game_realization.cpp.o"

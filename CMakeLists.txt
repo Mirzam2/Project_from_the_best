@@ -7,5 +7,6 @@ Game_realization.cpp
 Dice_realisation.cpp
 Hostandplayers.cpp
 Roulete_realisation.cpp
+BlackJack.cpp
 )	
 add_executable(main ${SOURCE_EXE})
