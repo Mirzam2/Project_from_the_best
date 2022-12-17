@@ -8,7 +8,6 @@
 #include <typeinfo>
 #include <cstring>
 #include <cstdlib>
-#include <sstream>
 
 using namespace std;
 
@@ -157,15 +156,16 @@ private:
     rouletevalue *playervalues; // массив со значениями на которые поставили игроки
 
 public:
-    Roulete(){};
+    Roulete();
+    Roulete(Player *Players, Host Croupier, int numofplayers);
 
     Roulete(rouletevalue computerval, rouletevalue *playervalues)
     {
         this->computerval = computerval;
         this->playervalues = playervalues;
     }
-    void game_process(Player *Players, Host Croupier, ofstream f, int numofplayers);
-    void initplayervalues(int n); // создание массива ставок
+    void game_process(int &Casinobank); //процесс игры
+    void initplayervalues(); // создание массива ставок
 
     void setplayervalnum(int index, int a); // присваивание числового значения по индексу в массив
 
@@ -196,7 +196,8 @@ public:
     bool getcompeven(); // четное нечетное
 
     bool getcompzero(); // ноль/не ноль
-
+    void lose(int index, int& Casinobank);//выводит в случае проигрыша
+    void win(int index, int& Casinobank, int multy);
     ~Roulete()
     {
         delete[] playervalues;

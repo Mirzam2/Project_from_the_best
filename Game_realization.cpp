@@ -1,20 +1,23 @@
 #include "casino.h"
-bool Game::isequal() {
-	std::cout << "isequal ";
-	std::cout << numofplayers << " ";
-	for (int i = 0; i < numofplayers-1; i++) {
-		std::cout << i << " is ok ";
-		if (Players[i].getbet() != Players[i + 1].getbet()) {
-			std::cout << " false \n";
-			return false;}
+bool Game::isequal()
+{
+	for (int i = 0; i < numofplayers - 1; ++i)
+	{
+		if (Players[i].getbet() != Players[i + 1].getbet())
+		{
+			return false;
+		}
 	}
-	cout << " true \n";
 	return true;
 }
-bool Game::isbankrupt() {
-	std::cout << "isbankrupt \n";
-	for (int i = 0; i < numofplayers; i++) {
-		if (Players[i].getbank() == 0) {return true;}
+bool Game::isbankrupt()
+{
+	for (int i = 0; i < numofplayers; ++i)
+	{
+		if (Players[i].getbank() == 0)
+		{
+			return true;
+		}
 	}
 	return false;
 }

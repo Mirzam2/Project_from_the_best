@@ -6,7 +6,31 @@
 
 #IncludeRegexTransform: 
 
+/mnt/d/Progi/Project_from_the_best/BlackJack.cpp
+casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
+sstream
+-
+string
+-
+
+/mnt/d/Progi/Project_from_the_best/Casino_realization.cpp
+casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
+
 /mnt/d/Progi/Project_from_the_best/Dice_realisation.cpp
+casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
+
+/mnt/d/Progi/Project_from_the_best/Game_realization.cpp
+casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
+
+/mnt/d/Progi/Project_from_the_best/Hostandplayers.cpp
+casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
+
+/mnt/d/Progi/Project_from_the_best/Roulete_realisation.cpp
 casino.h
 /mnt/d/Progi/Project_from_the_best/casino.h
 
@@ -29,6 +53,8 @@ cstring
 -
 cstdlib
 -
-sstream
--
+
+/mnt/d/Progi/Project_from_the_best/main.cpp
+casino.h
+/mnt/d/Progi/Project_from_the_best/casino.h
 
