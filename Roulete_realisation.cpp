@@ -1,6 +1,6 @@
 #include "casino.h";
 Roulete::Roulete() : Game() {}
-Roulete::Roulete(Player *Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers)
+Roulete::Roulete(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers) : Game(std::move(Players), Croupier, numofplayers)
 {
 	std::cout << "Game Roulete start \n Number players: " << numofplayers << "\n";
 }

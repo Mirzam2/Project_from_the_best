@@ -1,6 +1,6 @@
 #include "casino.h"
 Dices::Dices() : Game(){}; // конструктор по умолчанию
-Dices::Dices(Player *Players, Host Croupier, int numofplayers) : Game(Players, Croupier, numofplayers)
+Dices::Dices(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers) : Game(std::move(Players), Croupier, numofplayers)
 {
 	std::cout << "Game Dices start \n Number players: " << numofplayers << "\n";
 }
@@ -14,7 +14,7 @@ int Dices::RollofDice()
 
 void Dices::initplayerpoints(int a)
 {
-	playerpoints = new int[a];
+	playerpoints = std::make_unique<int[]>(numofplayers);;
 	for (int i = 0; i < a; ++i)
 	{
 		playerpoints[i] = 0;

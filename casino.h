@@ -8,7 +8,7 @@
 #include <typeinfo>
 #include <cstring>
 #include <cstdlib>
-
+#include <memory>
 using namespace std;
 
 enum stavka
@@ -104,7 +104,7 @@ public:
 class Game
 {
 protected:
-    Player *Players;
+std::unique_ptr<Player[]> Players;
     Host Croupier;
     int numofplayers=5;
 
@@ -112,22 +112,22 @@ public:
     // игровой процесс
     virtual bool isequal();    // проверка на одинаковость ставок
     virtual bool isbankrupt(); // проверка обанкротился ли кто то из игроков
-    Game(Player *Players, Host Croupier, int numofplayers);
+    Game(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers);
     Game();
 };
 
 class Dices : public Game
 { // игра в кости
 private:
-    int *playerpoints; // массив с суммами очков каждого игрока
+    std::unique_ptr<int[]> playerpoints; // массив с суммами очков каждого игрока
     int maxpoints;
 
 public:
     Dices(); // конструктор по умолчанию
-    Dices(Player *Players, Host Croupier, int numofplayers);
-    Dices(int *playerpoints)
+    Dices(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers);
+    Dices(std::unique_ptr<int[]> playerpointss)
     { // кончтруктор
-        this->playerpoints = playerpoints;
+        this->playerpoints = std::move(playerpointss);
     };
     //bool isbankrupt(); //
     int RollofDice();  // бросок костей
@@ -148,8 +148,6 @@ public:
 
     ~Dices()
     { // деструктор
-        delete[] Players;
-        delete[] playerpoints;
     }
 };
 
@@ -161,7 +159,7 @@ private:
 
 public:
     Roulete();
-    Roulete(Player *Players, Host Croupier, int numofplayers);
+    Roulete(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers);
 
     Roulete(rouletevalue computerval, rouletevalue *playervalues)
     {
@@ -214,7 +212,7 @@ private:
     int Casinobank = 10000000; // банк казино
     int numofplayers;          // количество игроков
     Host Croupier;             // крупье
-    Player *Players;           // массив игроков
+    std::unique_ptr<Player[]> Players;           // массив игроков
 
 public:
     void Setnumofplayers(); // устанавливает количество игроков
@@ -226,7 +224,6 @@ public:
     void game(); // игровой процесс
     ~Casino()
     {
-        delete[] Players;
     }
 };
 
@@ -265,8 +262,6 @@ public:
 
     Hand& operator=(const Hand& other);
 
-    //Hand& operator=(Hand&& other);
-
     int handpoint();
 
     void make_hand(std::vector<Card>& deck_of_cards);
@@ -283,7 +278,7 @@ std::ostream& operator<<(std::ostream& out, const Hand& obj);
 class BlackJack : public Game{
 public:
     BlackJack();
-    BlackJack(Player* Players, Host Croupier, int numofplayers);
+    BlackJack(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers);
     void game_process();
     bool Isace();
     void split(int i);
