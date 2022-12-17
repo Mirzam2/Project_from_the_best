@@ -10,7 +10,7 @@ void Host::SetName(){
 }
 
 void Player::SetName() {
-	cin >> name;
+	std::cin >> name;
 }
 
 void Host::BidsCollect(int a) {
