@@ -289,8 +289,8 @@ public:
     void even_money(int i);
     void Croupier_take();
 private:
-    Hand** hands;
-    int** bets;
+    std::unique_ptr<std::unique_ptr<Hand[]>[]> hands;
+    std::unique_ptr<std::unique_ptr<int[]>[]> bets;
     std::vector<Card> deck_of_cards_6 = make_deck(6);
     Hand Croupier_hand;
 };
