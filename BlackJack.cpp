@@ -179,6 +179,7 @@ bool BlackJack::Isace() {
     }
     return false;
 }
+
 void BlackJack::split(int i) {
     bets[i][1] = bets[i][0];
     Players[i].setcurrbank();
@@ -233,13 +234,18 @@ void BlackJack::Croupier_take() {
         Croupier_hand.getcard(deck_of_cards_6);
     }
 }
+
 void BlackJack::game_process() {
+    bool gamecontinue = true;
+
+
     for (int i = 0; i < numofplayers; i++) {
-        std::cout << i << '\n';
         std::cout << Players[i].GetName() << ' ';
         Players[i].SetintBank();
     }
 
+    do
+    {
     for (int i = 0; i < numofplayers; ++i) {
         std::cout << Players[i].GetName() << ' ';
         Players[i].SetBet();
@@ -258,26 +264,47 @@ void BlackJack::game_process() {
     Croupier_hand.print_card();
 
     for (int i = 0; i < numofplayers; ++i) {
-        std::cout << "Would you like to take card? 1)Yes 2)No" << '\n';
-        while (anser() && hands[i][0].handpoint() < 21) {
-            hands[i][0].getcard(deck_of_cards_6);
-            std::cout << hands[i][0] << '\n' << hands[i][0].handpoint();
-            std::cout << "Would you like to take card? 1)Yes 2)No" << '\n';
+        bool ans = true;
+        std::cout << '\n' << Players[i].GetName() << " Your turn" << '\n';
+        std::cout << "Your cards:" << '\n';
+        std::cout << hands[i][0] << '\n';
+        while (ans && hands[i][0].handpoint() < 21) {
+            std::cout << Players[i].GetName() << " Would you like to take card? 1)Yes 2)No" << '\n';
+            ans = anser();
+            if (ans) {
+                hands[i][0].getcard(deck_of_cards_6);
+            }
+            std::cout << hands[i][0] << '\n' << hands[i][0].handpoint() << '\n';
         }
+        std::cout << '\n';
     }
 
-    std::cout << Croupier_hand << '\n';
     Croupier_take();
+    std::cout << Croupier.GetName() << '\n' << Croupier_hand << '\n';
 
     for (int i = 0; i < numofplayers; ++i) {
         if (hands[i][0].handpoint() > 21) {
-            std::cout << "Yuo lose" << '\n';
+            std::cout << Players[i].GetName() << " You lose" << '\n';
             bets[i][0] = 0;
         }
         else if (Croupier_hand.handpoint() > 21) {
-            std::cout << "You win" << '\n';
+            std::cout << Players[i].GetName() << " You win" << '\n';
+            Players[i].SetoutBank_by_value(bets[i][0] * 2);
+        }
+        else if (Croupier_hand.handpoint() > hands[i][0].handpoint()) {
+            std::cout << Players[i].GetName() << " You lose" << '\n';
+            bets[i][0] = 0;
+        }
+        else if (hands[i][0].handpoint() > Croupier_hand.handpoint()) {
+            std::cout << Players[i].GetName() << "You win" << '\n';
             Players[i].SetoutBank_by_value(bets[i][0] * 2);
         }
     }
+    std::cout << '\n';
+    std::cout << "Do you want to play again? " << '\n';
+    std::cout << "0) No " << '\n';
+    std::cout << "1) Yes " << '\n';
+    std::cin >> gamecontinue;
+    } while (gamecontinue && isbankrupt() == false && deck_of_cards_6.size() > numofplayers);
     std::cout << "not now" << '\n';
 }
