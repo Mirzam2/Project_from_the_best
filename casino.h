@@ -230,11 +230,14 @@ public:
     Card();                                                              // конструктор по умолчанию
     Card(std::string suit, std::string dignity);                         // конструктор
     int get_nominal();
+    std::string get_suit();
+    std::string get_dignity();
+    int nominal;
+    Card& operator=(const Card& other);
 
 private:
     std::string suit;
     std::string dignity;
-    int nominal;
 };
 
 std::ostream& operator<<(std::ostream& out, const Card& obj);
@@ -251,9 +254,17 @@ public:
 
     void getcard(std::vector<Card>& deck_of_cards); //добавление карты в руку
 
-    Hand& operator=(const Hand& other);
+    //Hand& operator=(const Hand& other);
 
-    Hand& operator=(Hand&& other);
+    //Hand& operator=(Hand&& other);
+
+    int handpoint();
+
+    void make_hand(std::vector<Card>& deck_of_cards);
+        
+    void drop_card();
+    
+    void print_card();
 
     friend std::ostream& operator<<(std::ostream& out, const Card& obj);
 };
@@ -267,5 +278,6 @@ public:
     void game_process();
 private:
     Hand* hands;
+    int** bets;
     std::vector<Card> deck_of_cards_6 = make_deck(6);
 };

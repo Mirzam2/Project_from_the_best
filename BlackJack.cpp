@@ -24,7 +24,7 @@ Card::Card(std::string suit, std::string dignity) : suit(suit), dignity(dignity)
         nominal = 10;
     }
     if (dignity == "Ace") {
-        nominal = 1;
+        nominal = 11;
     }
 }
 
@@ -32,6 +32,22 @@ int Card::get_nominal() {
     return nominal;
 }
 
+std::string Card::get_suit() {
+    return suit;
+}
+
+std::string Card::get_dignity() {
+    return dignity;
+}
+
+Card& Card::operator=(const Card& other) {
+    if (this == &other)
+        return *this;
+    this->dignity = other.dignity;
+    this->suit = other.suit;
+    this->nominal = other.nominal;
+    return *this;
+}
 std::ostream& operator<<(std::ostream& out, const Card& obj) {
     out << obj.suit << " " << obj.dignity << '\n';
     return out;
@@ -82,21 +98,37 @@ void Hand::getcard(std::vector<Card>& deck_of_cards) {
     deck_of_cards.pop_back();
 }
 
-Hand& Hand::operator=(const Hand& other) {
-    if (this == &other)
-        return *this;
-    hand.clear();
-    this->hand = other.hand;
+void Hand::make_hand(std::vector<Card>& deck_of_cards) {
+    getcard(deck_of_cards);
+    getcard(deck_of_cards);
 }
 
-Hand& Hand::operator=(Hand&& other) {
-    if (this == &other)
-        return *this;
-    hand.clear();
-    this->hand = other.hand;
-    other.hand.clear();
+int Hand::handpoint() {
+    int sum = 0;
+    int num_of_ace = 0;
+    for (auto it : hand) {
+        if (it.get_dignity() == "Ace") {
+            num_of_ace++;
+        }
+        sum += it.nominal;
+    }
+    if (sum > 21) {
+        while (num_of_ace > 0 && sum > 21) {
+            num_of_ace--;
+            sum -= 10;
+        }
+    }
+    return sum;
 }
 
+void Hand::drop_card() {
+    hand.pop_back();
+}
+
+void Hand::print_card() {
+    std::cout << hand.front();
+    std::cout << "XXXXXXXXXX" << '\n';
+}
 std::ostream& operator<<(std::ostream& out, const Hand& obj) {
     for (auto item : obj.hand)
     {
@@ -109,14 +141,38 @@ BlackJack::BlackJack() : Game() {}
 
 BlackJack::BlackJack(std::unique_ptr<Player[]> Players, Host Croupier, int numofplayers) : Game(std::move(Players), Croupier, numofplayers){
     deck_of_cards_6 = make_deck(6);
-    for (int i = 0; i < numofplayers; i++) {
-        Hand hand_tmp(deck_of_cards_6);
-        hands[i] = hand_tmp;
+
+    bets = new int* [numofplayers];
+    for (int i = 0; i < numofplayers; ++i) {
+        bets[i] = new int[2];
     }
-    Hand Croupier_hand;
-    Croupier_hand.getcard(deck_of_cards_6);
+
+    Hand* hands = new Hand[numofplayers];
+
+    for (int i = 0; i < numofplayers; i++)
+    
+    {
+        cout << Players[i].GetName() << ' ';
+        Players[i].SetintBank();
+    }
+
+    for (int i = 0; i < numofplayers; ++i) {
+        cout << Players[i].GetName() << ' ';
+        Players[i].SetBet();
+        Players[i].setcurrbank();
+        bets[i][0] = Players[i].getbet();
+    }
+
+    for (int i = 0; i < numofplayers; i++) {
+        hands[i].make_hand(deck_of_cards_6);
+        std::cout << Players[i].GetName() << '\n' << hands[i] << '\n' << '\n';
+    }
+
+    Hand Croupier_hand(deck_of_cards_6);
+
+    Croupier_hand.print_card();
 }
 
 void BlackJack::game_process() {
-
+    std::cout << "not now" << '\n';
 }

@@ -3,7 +3,8 @@
 void Host::SetName(){
 	srand(time(0));
 
-	int f = rand() % croupiernames->size();
+	//int f = rand() % croupiernames->size();
+	int f = 0;
 
 	name = croupiernames[f];
 }
